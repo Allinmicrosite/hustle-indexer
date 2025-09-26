@@ -107,29 +107,20 @@ export function TopRatedHustles() {
 
             {/* Recent Review Snippets */}
             {hustle.recentReviews && hustle.recentReviews.length > 0 && (
-              <div className="border-t pt-3 space-y-2">
-                <div className="flex items-center text-xs text-muted-foreground mb-2">
+              <div className="border-t pt-2 mt-3">
+                <div className="flex items-center text-xs text-muted-foreground mb-1">
                   <User size={12} className="mr-1" />
-                  Recent reviews ({hustle.reviewCount} total)
+                  {hustle.reviewCount} reviews
                 </div>
-                {hustle.recentReviews.slice(0, 2).map((review) => (
-                  <div key={review.id} className="text-sm">
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="font-medium text-xs text-foreground">
-                        {displayUsername(review.username, review.isAnonymous)}
-                      </span>
-                      <div className="flex items-center">
-                        {renderStars(review.overallScore)}
-                        <span className="text-xs text-muted-foreground ml-1">
-                          {parseFloat(review.overallScore).toFixed(1)}
-                        </span>
-                      </div>
-                    </div>
-                    <p className="text-xs text-muted-foreground italic">
-                      "{truncateContent(review.content)}"
+                <div className="space-y-1">
+                  {hustle.recentReviews.slice(0, 2).map((review) => (
+                    <p key={review.id} className="text-xs text-muted-foreground">
+                      <span className="font-medium text-foreground">
+                        {displayUsername(review.username, review.isAnonymous)}:
+                      </span> "{truncateContent(review.content, 120)}"
                     </p>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             )}
             </div>
