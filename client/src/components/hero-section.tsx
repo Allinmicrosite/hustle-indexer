@@ -8,7 +8,7 @@ export function HeroSection() {
           Hustle Indexer
         </h1>
         <p className="text-xl text-muted-foreground mb-6">
-          Fair & Transparent Hustle Evaluation
+          Fair & Transparent Side Hustle Evaluations
         </p>
         
         <p className="text-xl text-muted-foreground mb-6 leading-relaxed max-w-3xl mx-auto">
