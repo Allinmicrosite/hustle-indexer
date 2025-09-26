@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "wouter";
 import { Star, Clock, DollarSign, User } from "lucide-react";
-import type { HustleWithCategory } from "@shared/schema";
+import type { HustleWithReviews } from "@shared/schema";
 
 export function TopRatedHustles() {
-  const { data: hustles, isLoading } = useQuery<HustleWithCategory[]>({
+  const { data: hustles, isLoading } = useQuery<HustleWithReviews[]>({
     queryKey: ["/api/hustles/top-rated"],
   });
 
@@ -31,6 +31,15 @@ export function TopRatedHustles() {
     if (min && max) return `$${min}-${max}/hr`;
     if (min) return `$${min}+/hr`;
     return `Up to $${max}/hr`;
+  };
+
+  const truncateContent = (content: string, maxLength: number = 100) => {
+    if (content.length <= maxLength) return content;
+    return content.substring(0, maxLength) + "...";
+  };
+
+  const displayUsername = (username: string, isAnonymous: number) => {
+    return isAnonymous ? "Anonymous" : username;
   };
 
   if (isLoading) {
@@ -80,7 +89,7 @@ export function TopRatedHustles() {
             <p className="text-muted-foreground mb-4" data-testid={`hustle-description-${hustle.id}`}>
               {hustle.description}
             </p>
-            <div className="flex items-center justify-between text-sm">
+            <div className="flex items-center justify-between text-sm mb-3">
               <div className="flex items-center space-x-4 text-muted-foreground">
                 <span className="flex items-center">
                   <Clock size={14} className="mr-1" />
@@ -90,15 +99,39 @@ export function TopRatedHustles() {
                   <DollarSign size={14} className="mr-1" />
                   {formatHourlyRate(hustle.hourlyRateMin, hustle.hourlyRateMax)}
                 </span>
-                <span className="flex items-center">
-                  <User size={14} className="mr-1" />
-                  {hustle.reviewCount} reviews
-                </span>
               </div>
               <span className="bg-chart-2 text-white px-2 py-1 rounded text-xs font-medium">
                 High Rating
               </span>
             </div>
+
+            {/* Recent Review Snippets */}
+            {hustle.recentReviews && hustle.recentReviews.length > 0 && (
+              <div className="border-t pt-3 space-y-2">
+                <div className="flex items-center text-xs text-muted-foreground mb-2">
+                  <User size={12} className="mr-1" />
+                  Recent reviews ({hustle.reviewCount} total)
+                </div>
+                {hustle.recentReviews.slice(0, 2).map((review) => (
+                  <div key={review.id} className="text-sm">
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="font-medium text-xs text-foreground">
+                        {displayUsername(review.username, review.isAnonymous)}
+                      </span>
+                      <div className="flex items-center">
+                        {renderStars(review.overallScore)}
+                        <span className="text-xs text-muted-foreground ml-1">
+                          {parseFloat(review.overallScore).toFixed(1)}
+                        </span>
+                      </div>
+                    </div>
+                    <p className="text-xs text-muted-foreground italic">
+                      "{truncateContent(review.content)}"
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
             </div>
           </Link>
         ))}

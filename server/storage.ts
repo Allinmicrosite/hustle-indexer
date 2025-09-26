@@ -129,8 +129,8 @@ export class DatabaseStorage implements IStorage {
     return result[0];
   }
 
-  async getTopRatedHustles(limit: number = 10): Promise<HustleWithCategory[]> {
-    return await db
+  async getTopRatedHustles(limit: number = 10): Promise<HustleWithReviews[]> {
+    const topHustles = await db
       .select({
         id: hustles.id,
         name: hustles.name,
@@ -159,6 +159,32 @@ export class DatabaseStorage implements IStorage {
       .where(and(eq(hustles.isActive, 1), sql`${hustles.reviewCount} > 0`))
       .orderBy(desc(hustles.averageScore), desc(hustles.reviewCount))
       .limit(limit);
+
+    // Get recent reviews for each hustle
+    const hustlesWithReviews = await Promise.all(
+      topHustles.map(async (hustle) => {
+        const recentReviews = await db
+          .select({
+            id: reviews.id,
+            username: reviews.username,
+            content: reviews.content,
+            overallScore: reviews.overallScore,
+            isAnonymous: reviews.isAnonymous,
+            createdAt: reviews.createdAt,
+          })
+          .from(reviews)
+          .where(eq(reviews.hustleId, hustle.id))
+          .orderBy(desc(reviews.createdAt))
+          .limit(2);
+
+        return {
+          ...hustle,
+          recentReviews: recentReviews || [],
+        };
+      })
+    );
+
+    return hustlesWithReviews;
   }
 
   async getRecentHustles(limit: number = 10): Promise<HustleWithCategory[]> {
