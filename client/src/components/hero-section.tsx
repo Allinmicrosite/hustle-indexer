@@ -9,10 +9,16 @@ export function HeroSection() {
           <span className="text-primary">Hustle Evaluation</span>
         </h2>
         
-        <p className="text-xl text-muted-foreground mb-8 leading-relaxed max-w-3xl mx-auto">
+        <p className="text-xl text-muted-foreground mb-6 leading-relaxed max-w-3xl mx-auto">
           Make informed decisions about online hustles and side gigs with our community-driven scoring system. 
           Get honest reviews, transparent ratings, and comprehensive evaluations of online opportunities.
         </p>
+        
+        <div className="bg-primary/10 border border-primary/20 rounded-lg p-6 mb-8 max-w-4xl mx-auto">
+          <p className="text-foreground font-medium leading-relaxed">
+            <span className="text-primary font-semibold">Our Unique Approach:</span> Hustle Indexer evaluates both business models and the people who promote them. We score each pitch separately from the system it's based on, so you can see the difference between a proven method and someone's unrealistic sales claims.
+          </p>
+        </div>
         
         <SearchBar />
         
