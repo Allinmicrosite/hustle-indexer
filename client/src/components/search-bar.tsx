@@ -1,15 +1,27 @@
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Search } from "lucide-react";
+import { Search, Star, Clock, DollarSign } from "lucide-react";
+import type { HustleWithCategory } from "@shared/schema";
 
 export function SearchBar() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [hasSearched, setHasSearched] = useState(false);
+
+  const { data: searchResults, isLoading } = useQuery<HustleWithCategory[]>({
+    queryKey: ["/api/hustles", searchQuery],
+    enabled: hasSearched && searchQuery.trim().length > 0,
+    queryFn: async () => {
+      const response = await fetch(`/api/hustles?search=${encodeURIComponent(searchQuery.trim())}`);
+      if (!response.ok) throw new Error('Search failed');
+      return response.json();
+    },
+  });
 
   const handleSearch = () => {
     if (searchQuery.trim()) {
-      // TODO: Implement search functionality
-      console.log("Searching for:", searchQuery);
+      setHasSearched(true);
     }
   };
 
@@ -19,9 +31,34 @@ export function SearchBar() {
     }
   };
 
+  const renderStars = (score: string | number) => {
+    const numScore = typeof score === "string" ? parseFloat(score) : score;
+    const fullStars = Math.floor(numScore / 2);
+    const hasHalfStar = (numScore / 2) % 1 !== 0;
+    
+    return (
+      <div className="flex rating-stars">
+        {[...Array(5)].map((_, i) => (
+          <Star
+            key={i}
+            size={14}
+            className={i < fullStars ? "fill-current" : i === fullStars && hasHalfStar ? "fill-current opacity-50" : ""}
+          />
+        ))}
+      </div>
+    );
+  };
+
+  const formatHourlyRate = (min?: number | null, max?: number | null) => {
+    if (!min && !max) return "Variable";
+    if (min && max) return `$${min}-${max}/hr`;
+    if (min) return `$${min}+/hr`;
+    return `Up to $${max}/hr`;
+  };
+
   return (
     <div className="max-w-2xl mx-auto mb-8">
-      <div className="relative">
+      <div className="relative mb-4">
         <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
           <Search className="text-muted-foreground" size={20} />
         </div>
@@ -42,6 +79,73 @@ export function SearchBar() {
           Search
         </Button>
       </div>
+
+      {/* Search Results */}
+      {hasSearched && (
+        <div className="bg-card border border-border rounded-lg p-4 max-w-4xl mx-auto">
+          <h3 className="text-lg font-semibold mb-4">
+            Search Results {searchQuery && `for "${searchQuery}"`}
+          </h3>
+          
+          {isLoading && (
+            <div className="space-y-4">
+              {[...Array(3)].map((_, i) => (
+                <div key={i} className="bg-muted/30 p-4 rounded-lg animate-pulse">
+                  <div className="h-5 bg-muted rounded mb-2 w-3/4"></div>
+                  <div className="h-4 bg-muted rounded mb-2 w-1/2"></div>
+                  <div className="h-4 bg-muted rounded w-full"></div>
+                </div>
+              ))}
+            </div>
+          )}
+          
+          {!isLoading && searchResults && searchResults.length > 0 && (
+            <div className="space-y-4">
+              {searchResults.map((hustle) => (
+                <div key={hustle.id} className="bg-background p-4 rounded-lg border border-border hover:shadow-md transition-shadow" data-testid={`search-result-${hustle.id}`}>
+                  <div className="flex items-start justify-between mb-2">
+                    <div>
+                      <h4 className="font-semibold text-foreground" data-testid={`search-hustle-name-${hustle.id}`}>
+                        {hustle.name}
+                      </h4>
+                      <p className="text-sm text-muted-foreground">
+                        {hustle.category?.name || "Uncategorized"}
+                      </p>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      {renderStars(hustle.averageScore || 0)}
+                      <span className="font-semibold text-foreground">
+                        {parseFloat(hustle.averageScore || "0").toFixed(1)}
+                      </span>
+                    </div>
+                  </div>
+                  <p className="text-muted-foreground text-sm mb-3">{hustle.description}</p>
+                  <div className="flex items-center justify-between text-xs text-muted-foreground">
+                    <div className="flex items-center space-x-3">
+                      <span className="flex items-center">
+                        <Clock size={12} className="mr-1" />
+                        {hustle.timeCommitment || "Flexible"}
+                      </span>
+                      <span className="flex items-center">
+                        <DollarSign size={12} className="mr-1" />
+                        {formatHourlyRate(hustle.hourlyRateMin, hustle.hourlyRateMax)}
+                      </span>
+                      <span>{hustle.reviewCount || 0} reviews</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+          
+          {!isLoading && searchResults && searchResults.length === 0 && (
+            <div className="text-center py-8 text-muted-foreground">
+              <p>No hustles found for "{searchQuery}"</p>
+              <p className="text-sm mt-2">Try different keywords or browse all hustles below.</p>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }
