@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { Link } from "wouter";
 import { Star, Clock, DollarSign, User } from "lucide-react";
 import type { HustleWithCategory } from "@shared/schema";
 
@@ -55,11 +56,11 @@ export function TopRatedHustles() {
       <h3 className="text-2xl font-semibold text-foreground mb-6">Top-Rated Hustles</h3>
       <div className="space-y-4">
         {hustles?.map((hustle) => (
-          <div 
-            key={hustle.id} 
-            className="bg-card p-6 rounded-lg border border-border hover:shadow-md transition-shadow"
-            data-testid={`hustle-card-${hustle.id}`}
-          >
+          <Link key={hustle.id} href={`/hustle/${hustle.id}`}>
+            <div 
+              className="bg-card p-6 rounded-lg border border-border hover:shadow-md transition-shadow cursor-pointer"
+              data-testid={`hustle-card-${hustle.id}`}
+            >
             <div className="flex items-start justify-between mb-3">
               <div>
                 <h4 className="text-lg font-semibold text-foreground mb-1" data-testid={`hustle-name-${hustle.id}`}>
@@ -98,7 +99,8 @@ export function TopRatedHustles() {
                 High Rating
               </span>
             </div>
-          </div>
+            </div>
+          </Link>
         ))}
         
         {!hustles?.length && (

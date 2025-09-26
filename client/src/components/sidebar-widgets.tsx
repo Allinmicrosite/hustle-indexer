@@ -126,7 +126,7 @@ export function SidebarWidgets() {
                 </div>
                 <div className="text-right">
                   <div className="font-semibold text-foreground" data-testid={`category-score-${category.category.id}`}>
-                    {category.averageScore ? category.averageScore.toFixed(1) : "N/A"}
+                    {category.averageScore ? parseFloat(category.averageScore.toString()).toFixed(1) : "N/A"}
                   </div>
                   {category.averageScore && renderStars(category.averageScore)}
                 </div>

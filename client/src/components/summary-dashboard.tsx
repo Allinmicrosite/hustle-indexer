@@ -44,7 +44,7 @@ export function SummaryDashboard() {
           </div>
           <div className="bg-card p-6 rounded-lg border border-border text-center">
             <div className="text-3xl font-bold text-chart-2 mb-2" data-testid="stat-average-score">
-              {statistics?.averageScore?.toFixed(1) || "0.0"}
+              {statistics?.averageScore ? parseFloat(statistics.averageScore.toString()).toFixed(1) : "0.0"}
             </div>
             <div className="text-muted-foreground">Average Score</div>
           </div>

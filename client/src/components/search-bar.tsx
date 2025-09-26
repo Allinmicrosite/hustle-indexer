@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search, Star, Clock, DollarSign } from "lucide-react";
@@ -102,38 +103,40 @@ export function SearchBar() {
           {!isLoading && searchResults && searchResults.length > 0 && (
             <div className="space-y-4">
               {searchResults.map((hustle) => (
-                <div key={hustle.id} className="bg-background p-4 rounded-lg border border-border hover:shadow-md transition-shadow" data-testid={`search-result-${hustle.id}`}>
-                  <div className="flex items-start justify-between mb-2">
-                    <div>
-                      <h4 className="font-semibold text-foreground" data-testid={`search-hustle-name-${hustle.id}`}>
-                        {hustle.name}
-                      </h4>
-                      <p className="text-sm text-muted-foreground">
-                        {hustle.category?.name || "Uncategorized"}
-                      </p>
+                <Link key={hustle.id} href={`/hustle/${hustle.id}`}>
+                  <div className="bg-background p-4 rounded-lg border border-border hover:shadow-md transition-shadow cursor-pointer" data-testid={`search-result-${hustle.id}`}>
+                    <div className="flex items-start justify-between mb-2">
+                      <div>
+                        <h4 className="font-semibold text-foreground hover:text-primary transition-colors" data-testid={`search-hustle-name-${hustle.id}`}>
+                          {hustle.name}
+                        </h4>
+                        <p className="text-sm text-muted-foreground">
+                          {hustle.category?.name || "Uncategorized"}
+                        </p>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        {renderStars(hustle.averageScore || 0)}
+                        <span className="font-semibold text-foreground">
+                          {parseFloat(hustle.averageScore || "0").toFixed(1)}
+                        </span>
+                      </div>
                     </div>
-                    <div className="flex items-center space-x-2">
-                      {renderStars(hustle.averageScore || 0)}
-                      <span className="font-semibold text-foreground">
-                        {parseFloat(hustle.averageScore || "0").toFixed(1)}
-                      </span>
+                    <p className="text-muted-foreground text-sm mb-3">{hustle.description}</p>
+                    <div className="flex items-center justify-between text-xs text-muted-foreground">
+                      <div className="flex items-center space-x-3">
+                        <span className="flex items-center">
+                          <Clock size={12} className="mr-1" />
+                          {hustle.timeCommitment || "Flexible"}
+                        </span>
+                        <span className="flex items-center">
+                          <DollarSign size={12} className="mr-1" />
+                          {formatHourlyRate(hustle.hourlyRateMin, hustle.hourlyRateMax)}
+                        </span>
+                        <span>{hustle.reviewCount || 0} reviews</span>
+                      </div>
                     </div>
                   </div>
-                  <p className="text-muted-foreground text-sm mb-3">{hustle.description}</p>
-                  <div className="flex items-center justify-between text-xs text-muted-foreground">
-                    <div className="flex items-center space-x-3">
-                      <span className="flex items-center">
-                        <Clock size={12} className="mr-1" />
-                        {hustle.timeCommitment || "Flexible"}
-                      </span>
-                      <span className="flex items-center">
-                        <DollarSign size={12} className="mr-1" />
-                        {formatHourlyRate(hustle.hourlyRateMin, hustle.hourlyRateMax)}
-                      </span>
-                      <span>{hustle.reviewCount || 0} reviews</span>
-                    </div>
-                  </div>
-                </div>
+                </Link>
               ))}
             </div>
           )}
