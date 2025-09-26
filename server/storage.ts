@@ -268,23 +268,31 @@ export class DatabaseStorage implements IStorage {
   }
 
   async updateHustleScores(hustleId: string): Promise<void> {
-    const reviewStats = await db
-      .select({
-        averageScore: sql<number>`AVG(${reviews.overallScore})`,
-        reviewCount: sql<number>`COUNT(*)`,
-      })
-      .from(reviews)
-      .where(eq(reviews.hustleId, hustleId));
-
-    if (reviewStats[0]) {
-      await db
-        .update(hustles)
-        .set({
-          averageScore: reviewStats[0].averageScore?.toString() || "0.0",
-          reviewCount: reviewStats[0].reviewCount || 0,
-          updatedAt: new Date(),
+    try {
+      const reviewStats = await db
+        .select({
+          averageScore: sql<string>`ROUND(AVG(CAST(${reviews.overallScore} AS DECIMAL)), 1)`,
+          reviewCount: sql<number>`COUNT(*)`,
         })
-        .where(eq(hustles.id, hustleId));
+        .from(reviews)
+        .where(eq(reviews.hustleId, hustleId));
+
+      if (reviewStats[0] && reviewStats[0].reviewCount > 0) {
+        const avgScore = reviewStats[0].averageScore || "0.0";
+        const count = reviewStats[0].reviewCount || 0;
+        
+        await db
+          .update(hustles)
+          .set({
+            averageScore: avgScore,
+            reviewCount: count,
+            updatedAt: new Date(),
+          })
+          .where(eq(hustles.id, hustleId));
+      }
+    } catch (error) {
+      console.error(`[updateHustleScores] Error updating scores for hustle ${hustleId}:`, error);
+      throw error;
     }
   }
 

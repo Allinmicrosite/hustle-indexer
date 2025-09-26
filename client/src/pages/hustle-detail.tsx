@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useParams, Link } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { Header } from "@/components/header";
@@ -6,11 +7,13 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { ReviewFormModal } from "@/components/review-form-modal";
 import { Star, Clock, DollarSign, Users, ArrowLeft, TrendingUp, Shield, Target, ThumbsUp, ThumbsDown } from "lucide-react";
 import type { HustleWithCategory, Review } from "@shared/schema";
 
 export default function HustleDetail() {
   const { id } = useParams();
+  const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
 
   const { data: hustle, isLoading: hustleLoading } = useQuery<HustleWithCategory>({
     queryKey: ["/api/hustles", id],
@@ -392,12 +395,26 @@ export default function HustleDetail() {
             <p className="text-muted-foreground mb-4">
               Help others make informed decisions by sharing your honest review and rating.
             </p>
-            <Button className="bg-primary text-primary-foreground hover:bg-primary/90" data-testid="button-write-review">
+            <Button 
+              className="bg-primary text-primary-foreground hover:bg-primary/90" 
+              data-testid="button-write-review"
+              onClick={() => setIsReviewModalOpen(true)}
+            >
               Write a Review
             </Button>
           </div>
         </div>
       </div>
+
+      {/* Review Form Modal */}
+      {hustle && (
+        <ReviewFormModal
+          hustleId={hustle.id}
+          hustleName={hustle.name}
+          isOpen={isReviewModalOpen}
+          onClose={() => setIsReviewModalOpen(false)}
+        />
+      )}
 
       <Footer />
     </div>
