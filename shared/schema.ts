@@ -78,5 +78,5 @@ export type Hustle = typeof hustles.$inferSelect;
 export type Review = typeof reviews.$inferSelect;
 
 // Extended types for API responses
-export type HustleWithCategory = Hustle & { category?: Category };
-export type HustleWithReviews = Hustle & { category?: Category; recentReviews?: Review[] };
+export type HustleWithCategory = Hustle & { category?: Category | null };
+export type HustleWithReviews = Hustle & { category?: Category | null; recentReviews?: Review[] };

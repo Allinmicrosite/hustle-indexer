@@ -53,7 +53,7 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getHustles(limit: number = 50, offset: number = 0): Promise<HustleWithCategory[]> {
-    return await db
+    const results = await db
       .select({
         id: hustles.id,
         name: hustles.name,
@@ -70,12 +70,10 @@ export class DatabaseStorage implements IStorage {
         isActive: hustles.isActive,
         createdAt: hustles.createdAt,
         updatedAt: hustles.updatedAt,
-        category: {
-          id: categories.id,
-          name: categories.name,
-          description: categories.description,
-          slug: categories.slug,
-        },
+        categoryId_ref: categories.id,
+        categoryName: categories.name,
+        categoryDescription: categories.description,
+        categorySlug: categories.slug,
       })
       .from(hustles)
       .leftJoin(categories, eq(hustles.categoryId, categories.id))
@@ -83,6 +81,20 @@ export class DatabaseStorage implements IStorage {
       .orderBy(desc(hustles.averageScore))
       .limit(limit)
       .offset(offset);
+
+    return results.map(row => ({
+      ...row,
+      category: row.categoryId_ref ? {
+        id: row.categoryId_ref,
+        name: row.categoryName!,
+        description: row.categoryDescription,
+        slug: row.categorySlug!,
+      } : null,
+      categoryId_ref: undefined,
+      categoryName: undefined,
+      categoryDescription: undefined,
+      categorySlug: undefined,
+    })) as HustleWithCategory[];
   }
 
   async getHustleById(id: string): Promise<HustleWithCategory | undefined> {
@@ -103,12 +115,12 @@ export class DatabaseStorage implements IStorage {
         isActive: hustles.isActive,
         createdAt: hustles.createdAt,
         updatedAt: hustles.updatedAt,
-        category: {
+        category: categories.id ? {
           id: categories.id,
           name: categories.name,
           description: categories.description,
           slug: categories.slug,
-        },
+        } : null,
       })
       .from(hustles)
       .leftJoin(categories, eq(hustles.categoryId, categories.id))
@@ -135,12 +147,12 @@ export class DatabaseStorage implements IStorage {
         isActive: hustles.isActive,
         createdAt: hustles.createdAt,
         updatedAt: hustles.updatedAt,
-        category: {
+        category: categories.id ? {
           id: categories.id,
           name: categories.name,
           description: categories.description,
           slug: categories.slug,
-        },
+        } : null,
       })
       .from(hustles)
       .leftJoin(categories, eq(hustles.categoryId, categories.id))
@@ -167,12 +179,12 @@ export class DatabaseStorage implements IStorage {
         isActive: hustles.isActive,
         createdAt: hustles.createdAt,
         updatedAt: hustles.updatedAt,
-        category: {
+        category: categories.id ? {
           id: categories.id,
           name: categories.name,
           description: categories.description,
           slug: categories.slug,
-        },
+        } : null,
       })
       .from(hustles)
       .leftJoin(categories, eq(hustles.categoryId, categories.id))
@@ -199,12 +211,12 @@ export class DatabaseStorage implements IStorage {
         isActive: hustles.isActive,
         createdAt: hustles.createdAt,
         updatedAt: hustles.updatedAt,
-        category: {
+        category: categories.id ? {
           id: categories.id,
           name: categories.name,
           description: categories.description,
           slug: categories.slug,
-        },
+        } : null,
       })
       .from(hustles)
       .leftJoin(categories, eq(hustles.categoryId, categories.id))
@@ -236,12 +248,12 @@ export class DatabaseStorage implements IStorage {
         isActive: hustles.isActive,
         createdAt: hustles.createdAt,
         updatedAt: hustles.updatedAt,
-        category: {
+        category: categories.id ? {
           id: categories.id,
           name: categories.name,
           description: categories.description,
           slug: categories.slug,
-        },
+        } : null,
       })
       .from(hustles)
       .leftJoin(categories, eq(hustles.categoryId, categories.id))
@@ -346,12 +358,12 @@ export class DatabaseStorage implements IStorage {
   }>> {
     return await db
       .select({
-        category: {
+        category: categories.id ? {
           id: categories.id,
           name: categories.name,
           description: categories.description,
           slug: categories.slug,
-        },
+        } : null,
         averageScore: sql<number>`AVG(CASE WHEN ${hustles.reviewCount} > 0 THEN ${hustles.averageScore} END)`,
         hustleCount: sql<number>`COUNT(${hustles.id})`,
       })

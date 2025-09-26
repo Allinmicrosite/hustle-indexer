@@ -80,7 +80,7 @@ export function SidebarWidgets() {
                   </p>
                 </div>
                 <span className="text-sm text-muted-foreground" data-testid={`recent-hustle-score-${hustle.id}`}>
-                  {hustle.reviewCount > 0 ? parseFloat(hustle.averageScore || "0").toFixed(1) : "Pending"}
+                  {(hustle.reviewCount || 0) > 0 ? parseFloat(hustle.averageScore || "0").toFixed(1) : "Pending"}
                 </span>
               </div>
             ))
