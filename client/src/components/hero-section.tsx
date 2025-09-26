@@ -22,6 +22,10 @@ export function HeroSection() {
           </p>
         </div>
         
+        <p className="text-lg text-foreground mb-6 max-w-3xl mx-auto">
+          Search our growing database of side hustles and see how they score for transparency, cost-to-value, repeatability, and success potential.
+        </p>
+        
         <SearchBar />
         
         <div className="flex flex-wrap justify-center gap-3 text-sm text-muted-foreground">
