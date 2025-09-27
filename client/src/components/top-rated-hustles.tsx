@@ -27,7 +27,7 @@ export function TopRatedHustles() {
   };
 
   const formatHourlyRate = (min?: number | null, max?: number | null) => {
-    if (!min && !max) return "Variable";
+    if (!min && !max) return "Varies";
     if (min && max) return `$${min}-${max}/hr`;
     if (min) return `$${min}+/hr`;
     return `Up to $${max}/hr`;
@@ -116,7 +116,7 @@ export function TopRatedHustles() {
                   {hustle.recentReviews.slice(0, 2).map((review) => (
                     <p key={review.id} className="text-xs text-muted-foreground">
                       <span className="font-medium text-foreground">
-                        {displayUsername(review.username, review.isAnonymous)}:
+                        {displayUsername(review.username, review.isAnonymous || 0)}:
                       </span> "{truncateContent(review.content, 120)}"
                     </p>
                   ))}

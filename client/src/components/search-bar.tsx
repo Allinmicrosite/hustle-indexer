@@ -51,7 +51,7 @@ export function SearchBar() {
   };
 
   const formatHourlyRate = (min?: number | null, max?: number | null) => {
-    if (!min && !max) return "Variable";
+    if (!min && !max) return "Varies";
     if (min && max) return `$${min}-${max}/hr`;
     if (min) return `$${min}+/hr`;
     return `Up to $${max}/hr`;
