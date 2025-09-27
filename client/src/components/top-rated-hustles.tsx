@@ -86,7 +86,7 @@ export function TopRatedHustles() {
             </div>
 
             {/* Next Row: Subject, Type, $, Rating */}
-            <div className="flex items-center justify-between text-sm mb-3 text-muted-foreground">
+            <div className="flex items-center text-sm mb-3 text-muted-foreground">
               <div className="flex items-center space-x-4">
                 <span data-testid={`hustle-category-${hustle.id}`}>
                   {hustle.category?.name || "Uncategorized"}
@@ -98,10 +98,10 @@ export function TopRatedHustles() {
                 <span className="flex items-center">
                   {formatHourlyRate(hustle.hourlyRateMin, hustle.hourlyRateMax)}
                 </span>
+                <span className="border border-green-500 text-green-600 px-2 py-0.5 rounded text-xs font-medium">
+                  High Rating
+                </span>
               </div>
-              <span className="bg-green-600/60 text-white px-2 py-1 rounded text-xs font-medium">
-                High Rating
-              </span>
             </div>
 
             {/* Middle: Description */}
