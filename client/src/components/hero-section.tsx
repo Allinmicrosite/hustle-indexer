@@ -11,20 +11,9 @@ export function HeroSection() {
           Fair & Transparent Side Hustle Evaluations
         </p>
         
-        <p className="text-xl text-muted-foreground mb-6 leading-relaxed max-w-3xl mx-auto">
-          Make informed decisions about online hustles and side gigs with our community-driven scoring system. 
-          Get honest reviews, transparent ratings, and comprehensive evaluations of online opportunities.
-        </p>
-        
-        <div className="bg-primary/10 border border-primary/20 rounded-lg p-6 mb-8 max-w-4xl mx-auto">
-          <p className="text-foreground font-medium leading-relaxed">
-            <span className="text-primary font-semibold">Our Unique Approach:</span> Hustle Indexer evaluates both business models and the people who promote them. We score each pitch separately from the system it's based on, so you can see the difference between a proven method and someone's unrealistic sales claims.
-          </p>
-        </div>
-        
         <SearchBar />
         
-        <div className="flex flex-wrap justify-center gap-3 text-sm text-muted-foreground">
+        <div className="flex flex-wrap justify-center gap-3 text-sm text-muted-foreground mb-8">
           <span className="bg-secondary px-3 py-1 rounded-full" data-testid="tag-dropshipping">
             Popular: Dropshipping
           </span>
@@ -37,6 +26,20 @@ export function HeroSection() {
           <span className="bg-secondary px-3 py-1 rounded-full" data-testid="tag-content">
             Content Creation
           </span>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <div className="bg-card border border-border rounded-lg p-6">
+            <p className="text-foreground leading-relaxed">
+              Make informed decisions about online hustles and side gigs with our community-driven scoring system. 
+              Get honest reviews, transparent ratings, and comprehensive evaluations of online opportunities.
+            </p>
+          </div>
+          <div className="bg-card border border-border rounded-lg p-6">
+            <p className="text-foreground leading-relaxed">
+              <span className="text-primary font-semibold">Our Unique Approach:</span> Hustle Indexer evaluates both business models and the people who promote them. We score each pitch separately from the system it's based on, so you can see the difference between a proven method and someone's unrealistic sales claims.
+            </p>
+          </div>
         </div>
       </div>
     </section>
