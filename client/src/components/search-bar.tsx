@@ -70,7 +70,7 @@ export function SearchBar() {
             <Input
               type="text"
               placeholder="Search for hustles, side gigs, or online opportunities..."
-              className="w-full pl-12 pr-4 py-4 bg-card border border-border rounded-lg text-lg focus:ring-2 focus:ring-ring focus:border-transparent placeholder:text-muted-foreground/50"
+              className="w-full pl-12 pr-4 py-4 bg-card border-2 border-border rounded-lg text-lg focus:ring-2 focus:ring-ring focus:border-transparent placeholder:text-muted-foreground/50"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               onKeyDown={handleKeyDown}
@@ -95,7 +95,7 @@ export function SearchBar() {
             <Input
               type="text"
               placeholder="Search for hustles"
-              className="w-full pl-12 pr-4 py-4 bg-card border border-border rounded-lg text-lg focus:ring-2 focus:ring-ring focus:border-transparent placeholder:text-muted-foreground/50"
+              className="w-full pl-12 pr-4 py-4 bg-card border-2 border-border rounded-lg text-lg focus:ring-2 focus:ring-ring focus:border-transparent placeholder:text-muted-foreground/50"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               onKeyDown={handleKeyDown}
