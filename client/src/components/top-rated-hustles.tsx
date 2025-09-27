@@ -59,8 +59,7 @@ export function TopRatedHustles() {
   };
 
   const displayReviewSource = (review: { sourcePlatform: string; sourceDate: string; sourceVerified: number | null }) => {
-    const verifiedText = review.sourceVerified ? " • Verified" : "";
-    return `${review.sourcePlatform} • ${review.sourceDate}${verifiedText}`;
+    return "Verified Reviewer";
   };
 
   if (isLoading) {

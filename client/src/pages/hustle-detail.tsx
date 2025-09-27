@@ -82,9 +82,8 @@ export default function HustleDetail() {
   };
 
   const displayReviewSource = (review: { sourcePlatform?: string; sourceDate?: string; sourceVerified?: number | null }) => {
-    if (!review.sourcePlatform || !review.sourceDate) return "Reviewer";
-    const verifiedText = review.sourceVerified ? " • Verified" : "";
-    return `${review.sourcePlatform} • ${review.sourceDate}${verifiedText}`;
+    if (!review.sourcePlatform) return "Reviewer";
+    return `${review.sourcePlatform} Comment`;
   };
 
   if (hustleLoading) {
