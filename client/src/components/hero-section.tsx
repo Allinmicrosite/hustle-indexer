@@ -41,7 +41,7 @@ export function HeroSection() {
                 />
               </svg>
             </div>
-            <p className="text-foreground leading-relaxed font-medium text-left flex-1 text-lg">
+            <p className="text-foreground leading-relaxed font-medium text-left flex-1 text-base">
               Discover side hustles with transparent reviews and community ratings. Compare costs, risks, and ROI before you commit.
             </p>
           </div>
@@ -58,7 +58,7 @@ export function HeroSection() {
                 />
               </svg>
             </div>
-            <p className="text-foreground leading-relaxed font-medium text-left flex-1 text-lg">
+            <p className="text-foreground leading-relaxed font-medium text-left flex-1 text-base">
               Hustle Indexer scores business models and promoters separately, exposing proven systems vs. hype-filled sales claims.
             </p>
           </div>
