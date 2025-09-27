@@ -59,8 +59,8 @@ export function SearchBar() {
 
   return (
     <div className="max-w-2xl mx-auto mb-8">
-      {/* Search card with faint background */}
-      <div className="bg-secondary/30 border border-border rounded-lg p-6 mb-4">
+      {/* Search card with white background and shadow */}
+      <div className="bg-white border border-border rounded-lg p-6 mb-4 shadow-lg">
         {/* Desktop Layout - Button outside input */}
         <div className="hidden sm:flex gap-3 mb-3">
           <div className="relative flex-1">
