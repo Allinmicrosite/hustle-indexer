@@ -60,7 +60,7 @@ export function SearchBar() {
   return (
     <div className="max-w-2xl mx-auto mb-8">
       {/* Search card with faint background */}
-      <div className="bg-secondary/30 border border-border rounded-lg p-4 mb-4">
+      <div className="bg-secondary/30 border border-border rounded-lg p-6 mb-4">
         {/* Desktop Layout - Button inside input */}
         <div className="hidden sm:block relative mb-3">
           <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
@@ -111,9 +111,9 @@ export function SearchBar() {
           </div>
         </div>
         
-        {/* Keywords inside the search card, left-aligned */}
-        <div className="text-left">
-          <p className="text-xs text-foreground">
+        {/* Keywords inside the search card, centered */}
+        <div className="text-center">
+          <p className="text-xs text-muted-foreground/70">
             Popular: Dropshipping · Affiliate Marketing · Online Tutoring · Content Creation
           </p>
         </div>
