@@ -156,7 +156,7 @@ export function TopRatedHustles() {
                   <div className="flex gap-3 flex-1">
                     {hustle.recentReviews.slice(0, 2).map((review, index) => (
                       <div key={review.id} className="bg-secondary/20 border border-border rounded-lg p-3 text-xs flex-1 shadow-sm">
-                        <div className="text-foreground mb-1">
+                        <div className="text-muted-foreground mb-1">
                           {displayReviewSource(review, hustle.reviewCount || 0, index)}
                         </div>
                         <div className="text-muted-foreground">
