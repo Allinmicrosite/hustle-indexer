@@ -144,22 +144,22 @@ export function TopRatedHustles() {
                     </div>
                   ))}
                 </div>
-                {/* Bottom-right: "More →" pill button */}
+                {/* Bottom-right: "More →" button */}
                 <div className="ml-4">
-                  <div className="bg-primary text-primary-foreground px-3 py-1.5 rounded-full text-xs font-medium flex items-center hover:bg-primary/90 transition-colors cursor-pointer">
+                  <div className="bg-primary text-primary-foreground px-4 py-2 rounded text-sm font-medium flex items-center hover:bg-primary/90 active:bg-primary/80 transition-colors cursor-pointer shadow-sm">
                     <span>More</span>
-                    <ArrowRight size={14} className="ml-1" />
+                    <ArrowRight size={16} className="ml-1.5" />
                   </div>
                 </div>
               </div>
             )}
 
-            {/* If no reviews, still show the More pill button */}
+            {/* If no reviews, still show the More button */}
             {(!hustle.recentReviews || hustle.recentReviews.length === 0) && (
               <div className="flex justify-end">
-                <div className="bg-primary text-primary-foreground px-3 py-1.5 rounded-full text-xs font-medium flex items-center hover:bg-primary/90 transition-colors cursor-pointer">
+                <div className="bg-primary text-primary-foreground px-4 py-2 rounded text-sm font-medium flex items-center hover:bg-primary/90 active:bg-primary/80 transition-colors cursor-pointer shadow-sm">
                   <span>More</span>
-                  <ArrowRight size={14} className="ml-1" />
+                  <ArrowRight size={16} className="ml-1.5" />
                 </div>
               </div>
             )}
