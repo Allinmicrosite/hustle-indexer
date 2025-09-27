@@ -106,7 +106,7 @@ export function TopRatedHustles() {
             </div>
 
             {/* Next Row: Subject, Type, $, Rating - responsive layout */}
-            <div className="grid grid-cols-2 gap-2 md:flex md:items-center md:space-x-3 md:gap-0 text-sm mb-3 text-muted-foreground">
+            <div className="flex flex-wrap gap-2 md:items-center md:space-x-3 md:gap-0 text-sm mb-3 text-muted-foreground">
               <span className="border-2 border-muted-foreground/40 text-muted-foreground px-2 py-0.5 rounded text-xs font-medium" data-testid={`hustle-category-${hustle.id}`}>
                 {hustle.category?.name || "Uncategorized"}
               </span>
@@ -165,7 +165,7 @@ export function TopRatedHustles() {
                   </div>
                 </div>
                 {/* Mobile: More button below reviews */}
-                <div className="flex justify-center md:hidden">
+                <div className="flex justify-end md:hidden">
                   <div className="bg-blue-50 text-blue-600 px-3 py-1.5 rounded text-xs font-medium flex items-center hover:bg-blue-100 active:bg-blue-200 transition-colors cursor-pointer">
                     <span>More</span>
                     <ArrowRight size={14} className="ml-1" />
