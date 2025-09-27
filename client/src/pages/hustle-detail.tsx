@@ -388,7 +388,7 @@ export default function HustleDetail() {
               Have experience with {hustle.name}?
             </h3>
             <p className="text-muted-foreground mb-4">
-              Help others make informed decisions by sharing your honest review and rating.
+              Share your expertise and experience to help others make informed decisions. Contribute honest reviews, insights, and lessons learned from working in this niche.
             </p>
             <Button 
               className="bg-primary text-primary-foreground hover:bg-primary/90" 
