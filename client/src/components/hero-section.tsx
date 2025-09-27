@@ -3,7 +3,7 @@ import { Link } from "wouter";
 
 export function HeroSection() {
   return (
-    <section className="bg-gradient-to-b from-card to-background pt-16 pb-8 px-4">
+    <section className="bg-gradient-to-b from-card to-background pt-16 pb-4 px-4">
       <div className="container mx-auto max-w-4xl text-center">
         <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-2 leading-tight">
           Hustle Indexer

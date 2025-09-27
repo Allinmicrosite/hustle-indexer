@@ -16,7 +16,7 @@ export function SummaryDashboard() {
 
   if (isLoading) {
     return (
-      <section className="pt-8 pb-16 px-4 bg-background">
+      <section className="pt-4 pb-16 px-4 bg-background">
         <div className="container mx-auto max-w-7xl">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
             {[...Array(4)].map((_, i) => (
@@ -32,7 +32,7 @@ export function SummaryDashboard() {
   }
 
   return (
-    <section className="pt-8 pb-16 px-4 bg-background">
+    <section className="pt-4 pb-16 px-4 bg-background">
       <div className="container mx-auto max-w-7xl">
         {/* Quick Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
