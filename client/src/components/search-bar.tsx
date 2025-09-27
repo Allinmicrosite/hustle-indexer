@@ -116,7 +116,7 @@ export function SearchBar() {
         {/* Keywords inside the search card, centered */}
         <div className="text-center">
           <p className="text-xs text-muted-foreground/50">
-            Popular: Dropshipping · Affiliate Marketing · Online Tutoring · Content Creation
+            Popular: Dropshipping · Affiliate Marketing · Online Tutoring · Content Creation · Freelancing · Writing · Branding · Web Design
           </p>
         </div>
       </div>
