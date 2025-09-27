@@ -114,7 +114,7 @@ export function TopRatedHustles() {
               <div className="flex items-end justify-between">
                 <div className="flex gap-3 flex-1">
                   {hustle.recentReviews.slice(0, 2).map((review) => (
-                    <div key={review.id} className="bg-secondary/20 border border-border rounded-lg p-3 text-xs flex-1">
+                    <div key={review.id} className="bg-secondary/20 border border-border rounded-lg p-3 text-xs flex-1 shadow-sm">
                       <div className="font-bold text-foreground mb-1">
                         {displayUsername(review.username, review.isAnonymous || 0)}
                       </div>
