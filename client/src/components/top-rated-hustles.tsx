@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "wouter";
-import { Star, Clock, DollarSign, User } from "lucide-react";
+import { Star, Clock, DollarSign, User, ArrowRight } from "lucide-react";
 import type { HustleWithReviews } from "@shared/schema";
 
 export function TopRatedHustles() {
@@ -70,14 +70,12 @@ export function TopRatedHustles() {
               className="bg-card p-6 rounded-lg border border-border hover:shadow-md transition-shadow cursor-pointer"
               data-testid={`hustle-card-${hustle.id}`}
             >
+            {/* Header row: Title + stars */}
             <div className="flex items-start justify-between mb-3">
               <div>
                 <h4 className="text-lg font-semibold text-foreground mb-1" data-testid={`hustle-name-${hustle.id}`}>
                   {hustle.name}
                 </h4>
-                <p className="text-muted-foreground text-sm" data-testid={`hustle-category-${hustle.id}`}>
-                  {hustle.category?.name || "Uncategorized"}
-                </p>
               </div>
               <div className="flex items-center space-x-2">
                 {renderStars(hustle.averageScore || 0)}
@@ -86,14 +84,16 @@ export function TopRatedHustles() {
                 </span>
               </div>
             </div>
-            <p className="text-muted-foreground mb-4" data-testid={`hustle-description-${hustle.id}`}>
-              {hustle.description}
-            </p>
-            <div className="flex items-center justify-between text-sm mb-3">
-              <div className="flex items-center space-x-4 text-muted-foreground">
+
+            {/* Next Row: Subject, Type, $, Rating */}
+            <div className="flex items-center justify-between text-sm mb-3 text-muted-foreground">
+              <div className="flex items-center space-x-4">
+                <span data-testid={`hustle-category-${hustle.id}`}>
+                  {hustle.category?.name || "Uncategorized"}
+                </span>
                 <span className="flex items-center">
                   <Clock size={14} className="mr-1" />
-                  {hustle.timeCommitment || "Flexible hours"}
+                  {hustle.timeCommitment || "Flexible"}
                 </span>
                 <span className="flex items-center">
                   {formatHourlyRate(hustle.hourlyRateMin, hustle.hourlyRateMax)}
@@ -104,21 +104,40 @@ export function TopRatedHustles() {
               </span>
             </div>
 
-            {/* Recent Review Snippets */}
+            {/* Middle: Description */}
+            <p className="text-muted-foreground mb-4" data-testid={`hustle-description-${hustle.id}`}>
+              {hustle.description}
+            </p>
+
+            {/* Review section: 2 small rounded boxes */}
             {hustle.recentReviews && hustle.recentReviews.length > 0 && (
-              <div className="border-t pt-2 mt-3">
-                <div className="flex items-center text-xs text-muted-foreground mb-1">
-                  <User size={12} className="mr-1" />
-                  {hustle.reviewCount} reviews
-                </div>
-                <div className="space-y-1">
+              <div className="flex items-end justify-between">
+                <div className="flex gap-3 flex-1">
                   {hustle.recentReviews.slice(0, 2).map((review) => (
-                    <p key={review.id} className="text-xs text-muted-foreground">
-                      <span className="font-medium text-foreground">
-                        {displayUsername(review.username, review.isAnonymous || 0)}:
-                      </span> "{truncateContent(review.content, 120)}"
-                    </p>
+                    <div key={review.id} className="bg-secondary/20 border border-border rounded-lg p-3 text-xs flex-1">
+                      <div className="font-bold text-foreground mb-1">
+                        {displayUsername(review.username, review.isAnonymous || 0)}
+                      </div>
+                      <div className="text-muted-foreground">
+                        "{truncateContent(review.content, 80)}"
+                      </div>
+                    </div>
                   ))}
+                </div>
+                {/* Bottom-right: "More →" button */}
+                <div className="ml-4 flex items-center text-primary text-sm font-medium">
+                  <span>More</span>
+                  <ArrowRight size={16} className="ml-1" />
+                </div>
+              </div>
+            )}
+
+            {/* If no reviews, still show the More button */}
+            {(!hustle.recentReviews || hustle.recentReviews.length === 0) && (
+              <div className="flex justify-end">
+                <div className="flex items-center text-primary text-sm font-medium">
+                  <span>More</span>
+                  <ArrowRight size={16} className="ml-1" />
                 </div>
               </div>
             )}
