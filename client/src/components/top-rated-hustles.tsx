@@ -105,8 +105,8 @@ export function TopRatedHustles() {
               </div>
             </div>
 
-            {/* Next Row: Subject, Type, $, Rating - 2x2 grid for small screens */}
-            <div className="grid grid-cols-2 gap-2 text-sm mb-3 text-muted-foreground">
+            {/* Next Row: Subject, Type, $, Rating - responsive layout */}
+            <div className="grid grid-cols-2 gap-2 md:flex md:items-center md:space-x-3 md:gap-0 text-sm mb-3 text-muted-foreground">
               <span className="border-2 border-muted-foreground/40 text-muted-foreground px-2 py-0.5 rounded text-xs font-medium" data-testid={`hustle-category-${hustle.id}`}>
                 {hustle.category?.name || "Uncategorized"}
               </span>
@@ -127,10 +127,11 @@ export function TopRatedHustles() {
               {hustle.description}
             </p>
 
-            {/* Review section: 2 stacked reviews */}
+            {/* Review section: responsive layout */}
             {hustle.recentReviews && hustle.recentReviews.length > 0 && (
-              <div className="space-y-3 mb-3">
-                <div className="space-y-2">
+              <div className="space-y-3 mb-3 md:space-y-0">
+                {/* Mobile: stacked reviews */}
+                <div className="space-y-2 md:hidden">
                   {hustle.recentReviews.slice(0, 2).map((review) => (
                     <div key={review.id} className="bg-secondary/20 border border-border rounded-lg p-3 text-xs shadow-sm">
                       <div className="font-bold text-foreground mb-1">
@@ -142,8 +143,29 @@ export function TopRatedHustles() {
                     </div>
                   ))}
                 </div>
-                {/* More button below reviews */}
-                <div className="flex justify-center">
+                {/* Desktop: side-by-side reviews with button */}
+                <div className="hidden md:flex md:items-end md:justify-between">
+                  <div className="flex gap-3 flex-1">
+                    {hustle.recentReviews.slice(0, 2).map((review) => (
+                      <div key={review.id} className="bg-secondary/20 border border-border rounded-lg p-3 text-xs flex-1 shadow-sm">
+                        <div className="font-bold text-foreground mb-1">
+                          {displayUsername(review.username, review.isAnonymous || 0)}
+                        </div>
+                        <div className="text-muted-foreground">
+                          "{truncateContent(review.content, 80)}"
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="ml-4">
+                    <div className="bg-blue-50 text-blue-600 px-3 py-1.5 rounded text-xs font-medium flex items-center hover:bg-blue-100 active:bg-blue-200 transition-colors cursor-pointer">
+                      <span>More</span>
+                      <ArrowRight size={14} className="ml-1" />
+                    </div>
+                  </div>
+                </div>
+                {/* Mobile: More button below reviews */}
+                <div className="flex justify-center md:hidden">
                   <div className="bg-blue-50 text-blue-600 px-3 py-1.5 rounded text-xs font-medium flex items-center hover:bg-blue-100 active:bg-blue-200 transition-colors cursor-pointer">
                     <span>More</span>
                     <ArrowRight size={14} className="ml-1" />
@@ -152,9 +174,9 @@ export function TopRatedHustles() {
               </div>
             )}
 
-            {/* If no reviews, still show the More button centered */}
+            {/* If no reviews, still show the More button - responsive position */}
             {(!hustle.recentReviews || hustle.recentReviews.length === 0) && (
-              <div className="flex justify-center mb-3">
+              <div className="flex justify-center md:justify-end mb-3">
                 <div className="bg-blue-50 text-blue-600 px-3 py-1.5 rounded text-xs font-medium flex items-center hover:bg-blue-100 active:bg-blue-200 transition-colors cursor-pointer">
                   <span>More</span>
                   <ArrowRight size={14} className="ml-1" />
