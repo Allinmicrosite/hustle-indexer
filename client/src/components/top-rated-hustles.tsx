@@ -124,20 +124,22 @@ export function TopRatedHustles() {
                     </div>
                   ))}
                 </div>
-                {/* Bottom-right: "More →" button */}
-                <div className="ml-4 flex items-center text-primary text-sm font-medium">
-                  <span>More</span>
-                  <ArrowRight size={16} className="ml-1" />
+                {/* Bottom-right: "More →" pill button */}
+                <div className="ml-4">
+                  <div className="bg-primary text-primary-foreground px-3 py-1.5 rounded-full text-xs font-medium flex items-center">
+                    <span>More</span>
+                    <ArrowRight size={14} className="ml-1" />
+                  </div>
                 </div>
               </div>
             )}
 
-            {/* If no reviews, still show the More button */}
+            {/* If no reviews, still show the More pill button */}
             {(!hustle.recentReviews || hustle.recentReviews.length === 0) && (
               <div className="flex justify-end">
-                <div className="flex items-center text-primary text-sm font-medium">
+                <div className="bg-primary text-primary-foreground px-3 py-1.5 rounded-full text-xs font-medium flex items-center">
                   <span>More</span>
-                  <ArrowRight size={16} className="ml-1" />
+                  <ArrowRight size={14} className="ml-1" />
                 </div>
               </div>
             )}
