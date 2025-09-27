@@ -8,8 +8,11 @@ export function HeroSection() {
         <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-2 leading-tight">
           Hustle Indexer
         </h1>
-        <p className="text-xl text-muted-foreground mb-6">
+        <p className="text-xl text-muted-foreground mb-2">
           Fair & Transparent Side Hustle Evaluations
+        </p>
+        <p className="text-xs text-muted-foreground mb-6">
+          Compare costs, risks, and ROI. See which hustles deliver — and which are just hype.
         </p>
         
         <SearchBar />
@@ -20,11 +23,6 @@ export function HeroSection() {
             Popular: Dropshipping · Affiliate Marketing · Online Tutoring · Content Creation
           </p>
         </div>
-        
-        {/* Slim one-liner */}
-        <p className="text-muted-foreground mb-8">
-          Compare costs, risks, and ROI. See which hustles deliver — and which are just hype.
-        </p>
       </div>
     </section>
   );
