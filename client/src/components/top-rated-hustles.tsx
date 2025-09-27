@@ -58,8 +58,8 @@ export function TopRatedHustles() {
     return content.substring(0, maxLength) + "...";
   };
 
-  const displayReviewSource = (review: { sourcePlatform: string; sourceDate: string; sourceVerified: number | null }, reviewCount: number) => {
-    return `Reviewer 1 of ${reviewCount}`;
+  const displayReviewSource = (review: { sourcePlatform: string; sourceDate: string; sourceVerified: number | null }, reviewCount: number, reviewIndex: number = 0) => {
+    return `Reviewer ${reviewIndex + 1} of ${reviewCount}`;
   };
 
   if (isLoading) {
@@ -140,10 +140,10 @@ export function TopRatedHustles() {
               <div className="space-y-3 mb-3 md:space-y-0">
                 {/* Mobile: stacked reviews */}
                 <div className="space-y-2 md:hidden">
-                  {hustle.recentReviews.slice(0, 2).map((review) => (
+                  {hustle.recentReviews.slice(0, 2).map((review, index) => (
                     <div key={review.id} className="bg-secondary/20 border border-border rounded-lg p-3 text-xs shadow-sm">
                       <div className="text-foreground mb-1">
-                        {displayReviewSource(review, hustle.reviewCount || 0)}
+                        {displayReviewSource(review, hustle.reviewCount || 0, index)}
                       </div>
                       <div className="text-muted-foreground">
                         "{truncateContent(review.content, 80)}"
@@ -154,10 +154,10 @@ export function TopRatedHustles() {
                 {/* Desktop: side-by-side reviews with button */}
                 <div className="hidden md:flex md:items-end md:justify-between">
                   <div className="flex gap-3 flex-1">
-                    {hustle.recentReviews.slice(0, 2).map((review) => (
+                    {hustle.recentReviews.slice(0, 2).map((review, index) => (
                       <div key={review.id} className="bg-secondary/20 border border-border rounded-lg p-3 text-xs flex-1 shadow-sm">
                         <div className="text-foreground mb-1">
-                          {displayReviewSource(review, hustle.reviewCount || 0)}
+                          {displayReviewSource(review, hustle.reviewCount || 0, index)}
                         </div>
                         <div className="text-muted-foreground">
                           "{truncateContent(review.content, 80)}"
