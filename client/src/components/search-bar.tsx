@@ -61,23 +61,25 @@ export function SearchBar() {
     <div className="max-w-2xl mx-auto mb-8">
       {/* Search card with faint background */}
       <div className="bg-secondary/30 border border-border rounded-lg p-6 mb-4">
-        {/* Desktop Layout - Button inside input */}
-        <div className="hidden sm:block relative mb-3">
-          <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-            <Search className="text-muted-foreground" size={20} />
+        {/* Desktop Layout - Button outside input */}
+        <div className="hidden sm:flex gap-3 mb-3">
+          <div className="relative flex-1">
+            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+              <Search className="text-muted-foreground" size={20} />
+            </div>
+            <Input
+              type="text"
+              placeholder="Search for hustles, side gigs, or online opportunities..."
+              className="w-full pl-12 pr-4 py-4 bg-card border border-border rounded-lg text-lg focus:ring-2 focus:ring-ring focus:border-transparent"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyDown={handleKeyDown}
+              data-testid="input-search"
+            />
           </div>
-          <Input
-            type="text"
-            placeholder="Search for hustles, side gigs, or online opportunities..."
-            className="w-full pl-12 pr-20 py-4 bg-card border border-border rounded-lg text-lg focus:ring-2 focus:ring-ring focus:border-transparent"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            onKeyDown={handleKeyDown}
-            data-testid="input-search"
-          />
           <Button
             onClick={handleSearch}
-            className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-primary text-primary-foreground hover:bg-primary/90 font-medium"
+            className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium px-6 py-4"
             data-testid="button-search"
           >
             Search
