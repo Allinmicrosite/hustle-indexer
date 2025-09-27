@@ -146,9 +146,9 @@ export function TopRatedHustles() {
                 </div>
                 {/* Bottom-right: "More →" button */}
                 <div className="ml-4">
-                  <div className="bg-primary text-primary-foreground px-4 py-2 rounded text-sm font-medium flex items-center hover:bg-primary/90 active:bg-primary/80 transition-colors cursor-pointer shadow-sm">
+                  <div className="bg-muted text-muted-foreground px-3 py-1.5 rounded text-xs font-medium flex items-center hover:bg-muted-foreground/10 active:bg-muted-foreground/20 transition-colors cursor-pointer">
                     <span>More</span>
-                    <ArrowRight size={16} className="ml-1.5" />
+                    <ArrowRight size={14} className="ml-1" />
                   </div>
                 </div>
               </div>
@@ -157,9 +157,9 @@ export function TopRatedHustles() {
             {/* If no reviews, still show the More button */}
             {(!hustle.recentReviews || hustle.recentReviews.length === 0) && (
               <div className="flex justify-end">
-                <div className="bg-primary text-primary-foreground px-4 py-2 rounded text-sm font-medium flex items-center hover:bg-primary/90 active:bg-primary/80 transition-colors cursor-pointer shadow-sm">
+                <div className="bg-muted text-muted-foreground px-3 py-1.5 rounded text-xs font-medium flex items-center hover:bg-muted-foreground/10 active:bg-muted-foreground/20 transition-colors cursor-pointer">
                   <span>More</span>
-                  <ArrowRight size={16} className="ml-1.5" />
+                  <ArrowRight size={14} className="ml-1" />
                 </div>
               </div>
             )}
