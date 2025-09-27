@@ -102,15 +102,13 @@ export function SearchBar() {
               data-testid="input-search-mobile"
             />
           </div>
-          <div className="flex justify-end">
-            <Button
-              onClick={handleSearch}
-              className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium px-6"
-              data-testid="button-search-mobile"
-            >
-              Search
-            </Button>
-          </div>
+          <Button
+            onClick={handleSearch}
+            className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-medium py-2"
+            data-testid="button-search-mobile"
+          >
+            Search
+          </Button>
         </div>
         
         {/* Keywords inside the search card, centered */}
