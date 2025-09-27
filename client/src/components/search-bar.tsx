@@ -121,7 +121,7 @@ export function SearchBar() {
                         </span>
                       </div>
                     </div>
-                    <p className="text-muted-foreground text-sm mb-3">{hustle.description}</p>
+                    <p className="text-muted-foreground text-sm mb-3 text-left">{hustle.description}</p>
                     <div className="flex items-center justify-between text-xs text-muted-foreground">
                       <div className="flex items-center space-x-3">
                         <span className="flex items-center">
@@ -133,6 +133,11 @@ export function SearchBar() {
                           {formatHourlyRate(hustle.hourlyRateMin, hustle.hourlyRateMax)}
                         </span>
                         <span>{hustle.reviewCount || 0} reviews</span>
+                      </div>
+                      <div className="flex items-center">
+                        <span className="bg-green-600 text-white text-xs px-3 py-1 rounded-md font-medium">
+                          More
+                        </span>
                       </div>
                     </div>
                   </div>
