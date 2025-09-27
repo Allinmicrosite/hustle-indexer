@@ -104,7 +104,7 @@ export function SearchBar() {
           </div>
           <Button
             onClick={handleSearch}
-            className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-medium py-2"
+            className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-medium py-1.5"
             data-testid="button-search-mobile"
           >
             Search
