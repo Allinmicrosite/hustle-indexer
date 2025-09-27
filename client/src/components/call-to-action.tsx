@@ -13,7 +13,7 @@ export function CallToAction() {
         <h3 className="text-3xl font-bold text-primary-foreground mb-4">
           Help Others Make Informed Decisions
         </h3>
-        <p className="text-xl text-primary-foreground/90 mb-8 leading-relaxed">
+        <p className="text-xl text-primary-foreground/60 mb-8 leading-relaxed">
           Share your experience or point us to reviews you've found online. Every submission is reviewed by our team before it's published to ensure accuracy and protect against spam. Your input helps us build a transparent and trustworthy community.
         </p>
         <div className="flex justify-center">
