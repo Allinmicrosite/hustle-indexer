@@ -31,8 +31,11 @@ export const hustles = pgTable("hustles", {
 export const reviews = pgTable("reviews", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   hustleId: varchar("hustle_id").references(() => hustles.id),
-  username: text("username").notNull(),
+  username: text("username").notNull(), // kept for internal use, not displayed
   email: text("email"),
+  sourcePlatform: text("source_platform").notNull(), // e.g., "Reddit", "Twitter", "Survey"
+  sourceDate: text("source_date").notNull(), // e.g., "September 26, 2025"
+  sourceVerified: integer("source_verified").default(0), // 1 if verified, 0 if not
   overallScore: decimal("overall_score", { precision: 2, scale: 1 }).notNull(),
   earningPotentialScore: decimal("earning_potential_score", { precision: 2, scale: 1 }),
   timeInvestmentScore: decimal("time_investment_score", { precision: 2, scale: 1 }),

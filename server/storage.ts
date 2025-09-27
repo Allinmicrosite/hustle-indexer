@@ -167,6 +167,9 @@ export class DatabaseStorage implements IStorage {
           .select({
             id: reviews.id,
             username: reviews.username,
+            sourcePlatform: reviews.sourcePlatform,
+            sourceDate: reviews.sourceDate,
+            sourceVerified: reviews.sourceVerified,
             content: reviews.content,
             overallScore: reviews.overallScore,
             isAnonymous: reviews.isAnonymous,

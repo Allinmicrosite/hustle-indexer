@@ -58,8 +58,9 @@ export function TopRatedHustles() {
     return content.substring(0, maxLength) + "...";
   };
 
-  const displayUsername = (username: string, isAnonymous: number) => {
-    return isAnonymous ? "Anonymous" : username;
+  const displayReviewSource = (review: { sourcePlatform: string; sourceDate: string; sourceVerified: number | null }) => {
+    const verifiedText = review.sourceVerified ? " • Verified" : "";
+    return `${review.sourcePlatform} • ${review.sourceDate}${verifiedText}`;
   };
 
   if (isLoading) {
@@ -143,7 +144,7 @@ export function TopRatedHustles() {
                   {hustle.recentReviews.slice(0, 2).map((review) => (
                     <div key={review.id} className="bg-secondary/20 border border-border rounded-lg p-3 text-xs shadow-sm">
                       <div className="font-bold text-foreground mb-1">
-                        {displayUsername(review.username, review.isAnonymous || 0)}
+                        {displayReviewSource(review)}
                       </div>
                       <div className="text-muted-foreground">
                         "{truncateContent(review.content, 80)}"
@@ -157,7 +158,7 @@ export function TopRatedHustles() {
                     {hustle.recentReviews.slice(0, 2).map((review) => (
                       <div key={review.id} className="bg-secondary/20 border border-border rounded-lg p-3 text-xs flex-1 shadow-sm">
                         <div className="font-bold text-foreground mb-1">
-                          {displayUsername(review.username, review.isAnonymous || 0)}
+                          {displayReviewSource(review)}
                         </div>
                         <div className="text-muted-foreground">
                           "{truncateContent(review.content, 80)}"
