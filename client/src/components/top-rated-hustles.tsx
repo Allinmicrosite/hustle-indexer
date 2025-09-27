@@ -8,6 +8,26 @@ export function TopRatedHustles() {
     queryKey: ["/api/hustles/top-rated"],
   });
 
+  const renderTrafficLight = (rating: number) => {
+    const redFilled = rating < 2.5;
+    const yellowFilled = rating >= 2.5 && rating < 4.0;
+    const greenFilled = rating >= 4.0;
+    
+    return (
+      <div className="flex items-center space-x-1">
+        <div className={`w-2.5 h-2.5 rounded-full border ${
+          redFilled ? 'bg-red-500 border-red-500' : 'border-red-500/50 bg-transparent'
+        }`}></div>
+        <div className={`w-2.5 h-2.5 rounded-full border ${
+          yellowFilled ? 'bg-yellow-500 border-yellow-500' : 'border-yellow-500/50 bg-transparent'
+        }`}></div>
+        <div className={`w-2.5 h-2.5 rounded-full border ${
+          greenFilled ? 'bg-green-500 border-green-500' : 'border-green-500/50 bg-transparent'
+        }`}></div>
+      </div>
+    );
+  };
+
   const renderStars = (score: string | number) => {
     const numScore = typeof score === "string" ? parseFloat(score) : score;
     const fullStars = Math.floor(numScore / 2);
@@ -98,8 +118,8 @@ export function TopRatedHustles() {
                 <span className="border border-muted-foreground/30 text-muted-foreground px-2 py-0.5 rounded text-xs font-medium flex items-center">
                   {formatHourlyRate(hustle.hourlyRateMin, hustle.hourlyRateMax)}
                 </span>
-                <span className="border border-green-500 text-green-600 px-2 py-0.5 rounded text-xs font-medium">
-                  High Rating
+                <span className="border border-muted-foreground/30 px-2 py-0.5 rounded text-xs font-medium flex items-center">
+                  {renderTrafficLight(parseFloat(hustle.averageScore || "0"))}
                 </span>
               </div>
             </div>
