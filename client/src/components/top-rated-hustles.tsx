@@ -58,8 +58,8 @@ export function TopRatedHustles() {
     return content.substring(0, maxLength) + "...";
   };
 
-  const displayReviewSource = (review: { sourcePlatform: string; sourceDate: string; sourceVerified: number | null }) => {
-    return "Verified Reviewer";
+  const displayReviewSource = (review: { sourcePlatform: string; sourceDate: string; sourceVerified: number | null }, reviewCount: number) => {
+    return `Reviewer 1 of ${reviewCount}`;
   };
 
   if (isLoading) {
@@ -143,7 +143,7 @@ export function TopRatedHustles() {
                   {hustle.recentReviews.slice(0, 2).map((review) => (
                     <div key={review.id} className="bg-secondary/20 border border-border rounded-lg p-3 text-xs shadow-sm">
                       <div className="text-foreground mb-1">
-                        {displayReviewSource(review)}
+                        {displayReviewSource(review, hustle.reviewCount || 0)}
                       </div>
                       <div className="text-muted-foreground">
                         "{truncateContent(review.content, 80)}"
@@ -157,7 +157,7 @@ export function TopRatedHustles() {
                     {hustle.recentReviews.slice(0, 2).map((review) => (
                       <div key={review.id} className="bg-secondary/20 border border-border rounded-lg p-3 text-xs flex-1 shadow-sm">
                         <div className="text-foreground mb-1">
-                          {displayReviewSource(review)}
+                          {displayReviewSource(review, hustle.reviewCount || 0)}
                         </div>
                         <div className="text-muted-foreground">
                           "{truncateContent(review.content, 80)}"
