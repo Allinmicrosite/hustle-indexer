@@ -81,6 +81,12 @@ export default function HustleDetail() {
     });
   };
 
+  const displayReviewSource = (review: { sourcePlatform?: string; sourceDate?: string; sourceVerified?: number | null }) => {
+    if (!review.sourcePlatform || !review.sourceDate) return "Reviewer";
+    const verifiedText = review.sourceVerified ? " • Verified" : "";
+    return `${review.sourcePlatform} • ${review.sourceDate}${verifiedText}`;
+  };
+
   if (hustleLoading) {
     return (
       <div className="min-h-screen bg-background">
@@ -257,17 +263,7 @@ export default function HustleDetail() {
                           {review.title}
                         </h4>
                         <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                          <span>by {review.isAnonymous ? "Anonymous" : review.username}</span>
-                          <span>•</span>
-                          <span>{formatDate(review.createdAt?.toString() || "")}</span>
-                          {review.isVerified && (
-                            <>
-                              <span>•</span>
-                              <Badge variant="outline" className="text-xs">
-                                Verified
-                              </Badge>
-                            </>
-                          )}
+                          <span>by {displayReviewSource(review)}</span>
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
