@@ -18,7 +18,7 @@ export function SummaryDashboard() {
     return (
       <section className="py-16 px-4 bg-background">
         <div className="container mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
             {[...Array(4)].map((_, i) => (
               <div key={i} className="bg-card p-6 rounded-lg border border-border text-center animate-pulse">
                 <div className="h-8 bg-muted rounded mb-2"></div>
@@ -35,7 +35,7 @@ export function SummaryDashboard() {
     <section className="py-16 px-4 bg-background">
       <div className="container mx-auto max-w-7xl">
         {/* Quick Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
           <div className="bg-card p-6 rounded-lg border border-border text-center">
             <div className="text-3xl font-bold text-primary mb-2" data-testid="stat-total-hustles">
               {statistics?.totalHustles?.toLocaleString() || 0}
