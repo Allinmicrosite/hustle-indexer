@@ -27,7 +27,7 @@ export function TopRatedHustles() {
   };
 
   const formatHourlyRate = (min?: number | null, max?: number | null) => {
-    if (!min && !max) return "Varies";
+    if (!min && !max) return "$ Varies";
     if (min && max) return `$${min}-${max}/hr`;
     if (min) return `$${min}+/hr`;
     return `Up to $${max}/hr`;
@@ -96,7 +96,6 @@ export function TopRatedHustles() {
                   {hustle.timeCommitment || "Flexible hours"}
                 </span>
                 <span className="flex items-center">
-                  <DollarSign size={14} className="mr-1" />
                   {formatHourlyRate(hustle.hourlyRateMin, hustle.hourlyRateMax)}
                 </span>
               </div>

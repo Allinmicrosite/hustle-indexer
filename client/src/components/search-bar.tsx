@@ -51,7 +51,7 @@ export function SearchBar() {
   };
 
   const formatHourlyRate = (min?: number | null, max?: number | null) => {
-    if (!min && !max) return "Varies";
+    if (!min && !max) return "$ Varies";
     if (min && max) return `$${min}-${max}/hr`;
     if (min) return `$${min}+/hr`;
     return `Up to $${max}/hr`;
@@ -129,7 +129,6 @@ export function SearchBar() {
                           {hustle.timeCommitment || "Flexible"}
                         </span>
                         <span className="flex items-center">
-                          <DollarSign size={12} className="mr-1" />
                           {formatHourlyRate(hustle.hourlyRateMin, hustle.hourlyRateMax)}
                         </span>
                         <span>{hustle.reviewCount || 0} reviews</span>

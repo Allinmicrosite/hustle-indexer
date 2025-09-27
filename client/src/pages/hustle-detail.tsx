@@ -54,7 +54,7 @@ export default function HustleDetail() {
   };
 
   const formatHourlyRate = (min?: number | null, max?: number | null) => {
-    if (!min && !max) return "Varies";
+    if (!min && !max) return "$ Varies";
     if (min && max) return `$${min}-${max}/hr`;
     if (min) return `$${min}+/hr`;
     return `Up to $${max}/hr`;
@@ -161,7 +161,6 @@ export default function HustleDetail() {
               {/* Key Metrics */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <div className="flex items-center gap-2 text-sm">
-                  <DollarSign className="text-green-600" size={16} />
                   <span className="text-muted-foreground">
                     {formatHourlyRate(hustle.hourlyRateMin, hustle.hourlyRateMax)}
                   </span>
