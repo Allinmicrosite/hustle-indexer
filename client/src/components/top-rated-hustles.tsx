@@ -59,7 +59,7 @@ export function TopRatedHustles() {
   };
 
   const displayReviewSource = (review: { sourcePlatform: string; sourceDate: string; sourceVerified: number | null }, reviewCount: number, reviewIndex: number = 0) => {
-    return `Reviewer ${reviewIndex + 1} of ${reviewCount}`;
+    return `Review ${reviewIndex + 1} of ${reviewCount}`;
   };
 
   if (isLoading) {
@@ -142,7 +142,7 @@ export function TopRatedHustles() {
                 <div className="space-y-2 md:hidden">
                   {hustle.recentReviews.slice(0, 2).map((review, index) => (
                     <div key={review.id} className="bg-secondary/20 border border-border rounded-lg p-3 text-xs shadow-sm">
-                      <div className="text-foreground mb-1">
+                      <div className="text-muted-foreground mb-1">
                         {displayReviewSource(review, hustle.reviewCount || 0, index)}
                       </div>
                       <div className="text-muted-foreground">
