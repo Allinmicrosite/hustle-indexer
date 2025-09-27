@@ -146,7 +146,7 @@ export function TopRatedHustles() {
                 </div>
                 {/* Bottom-right: "More →" button */}
                 <div className="ml-4">
-                  <div className="bg-muted text-muted-foreground px-3 py-1.5 rounded text-xs font-medium flex items-center hover:bg-muted-foreground/10 active:bg-muted-foreground/20 transition-colors cursor-pointer">
+                  <div className="bg-blue-50 text-blue-600 px-3 py-1.5 rounded text-xs font-medium flex items-center hover:bg-blue-100 active:bg-blue-200 transition-colors cursor-pointer">
                     <span>More</span>
                     <ArrowRight size={14} className="ml-1" />
                   </div>
@@ -157,7 +157,7 @@ export function TopRatedHustles() {
             {/* If no reviews, still show the More button */}
             {(!hustle.recentReviews || hustle.recentReviews.length === 0) && (
               <div className="flex justify-end">
-                <div className="bg-muted text-muted-foreground px-3 py-1.5 rounded text-xs font-medium flex items-center hover:bg-muted-foreground/10 active:bg-muted-foreground/20 transition-colors cursor-pointer">
+                <div className="bg-blue-50 text-blue-600 px-3 py-1.5 rounded text-xs font-medium flex items-center hover:bg-blue-100 active:bg-blue-200 transition-colors cursor-pointer">
                   <span>More</span>
                   <ArrowRight size={14} className="ml-1" />
                 </div>
