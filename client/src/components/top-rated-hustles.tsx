@@ -106,20 +106,28 @@ export function TopRatedHustles() {
             </div>
 
             {/* Next Row: Subject, Type, $, Rating - responsive layout */}
-            <div className="flex flex-wrap gap-2 md:items-center md:space-x-3 md:gap-0 text-sm mb-3 text-muted-foreground">
-              <span className="border-2 border-muted-foreground/40 text-muted-foreground px-2 py-0.5 rounded text-xs font-medium" data-testid={`hustle-category-${hustle.id}`}>
-                {hustle.category?.name || "Uncategorized"}
-              </span>
-              <span className="border-2 border-muted-foreground/40 text-muted-foreground px-2 py-0.5 rounded text-xs font-medium flex items-center">
-                <Clock size={12} className="mr-1" />
-                {hustle.timeCommitment || "Flexible"}
-              </span>
-              <span className="border-2 border-muted-foreground/40 text-muted-foreground px-2 py-0.5 rounded text-xs font-medium flex items-center">
-                {formatHourlyRate(hustle.hourlyRateMin, hustle.hourlyRateMax)}
-              </span>
-              <span className="border-2 border-muted-foreground/40 px-2 py-0.5 rounded text-xs font-medium flex items-center justify-center min-w-[50px]">
-                {renderTrafficLight(parseFloat(hustle.averageScore || "0"))}
-              </span>
+            <div className="text-sm mb-3 text-muted-foreground">
+              <div className="flex flex-wrap gap-2 md:items-center md:space-x-3 md:gap-0">
+                {/* First group: Category and Time (stay together on mobile) */}
+                <div className="flex gap-2">
+                  <span className="border-2 border-muted-foreground/40 text-muted-foreground px-2 py-0.5 rounded text-xs font-medium" data-testid={`hustle-category-${hustle.id}`}>
+                    {hustle.category?.name || "Uncategorized"}
+                  </span>
+                  <span className="border-2 border-muted-foreground/40 text-muted-foreground px-2 py-0.5 rounded text-xs font-medium flex items-center">
+                    <Clock size={12} className="mr-1" />
+                    {hustle.timeCommitment || "Flexible"}
+                  </span>
+                </div>
+                {/* Second group: Salary and Traffic Light (stay together on mobile) */}
+                <div className="flex gap-2">
+                  <span className="border-2 border-muted-foreground/40 text-muted-foreground px-2 py-0.5 rounded text-xs font-medium flex items-center">
+                    {formatHourlyRate(hustle.hourlyRateMin, hustle.hourlyRateMax)}
+                  </span>
+                  <span className="border-2 border-muted-foreground/40 px-2 py-0.5 rounded text-xs font-medium flex items-center justify-center min-w-[50px]">
+                    {renderTrafficLight(parseFloat(hustle.averageScore || "0"))}
+                  </span>
+                </div>
+              </div>
             </div>
 
             {/* Middle: Description - smaller font for mobile */}
