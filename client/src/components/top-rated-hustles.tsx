@@ -19,7 +19,7 @@ export function TopRatedHustles() {
           redFilled ? 'bg-red-500 border-red-500' : 'border-red-500/60 bg-transparent'
         }`}></div>
         <div className={`w-3.5 h-3.5 rounded-full border-2 ${
-          yellowFilled ? 'bg-yellow-500 border-yellow-500' : 'border-yellow-500/60 bg-transparent'
+          yellowFilled ? 'bg-yellow-400 border-yellow-400' : 'border-yellow-400/60 bg-transparent'
         }`}></div>
         <div className={`w-3.5 h-3.5 rounded-full border-2 ${
           greenFilled ? 'bg-green-500 border-green-500' : 'border-green-500/60 bg-transparent'
