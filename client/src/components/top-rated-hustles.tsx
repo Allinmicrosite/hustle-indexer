@@ -99,7 +99,7 @@ export function TopRatedHustles() {
                   {formatHourlyRate(hustle.hourlyRateMin, hustle.hourlyRateMax)}
                 </span>
               </div>
-              <span className="bg-chart-2 text-white px-2 py-1 rounded text-xs font-medium">
+              <span className="bg-green-600/60 text-white px-2 py-1 rounded text-xs font-medium">
                 High Rating
               </span>
             </div>
@@ -126,7 +126,7 @@ export function TopRatedHustles() {
                 </div>
                 {/* Bottom-right: "More →" pill button */}
                 <div className="ml-4">
-                  <div className="bg-primary text-primary-foreground px-3 py-1.5 rounded-full text-xs font-medium flex items-center">
+                  <div className="bg-primary text-primary-foreground px-3 py-1.5 rounded-full text-xs font-medium flex items-center hover:bg-primary/90 transition-colors cursor-pointer">
                     <span>More</span>
                     <ArrowRight size={14} className="ml-1" />
                   </div>
@@ -137,7 +137,7 @@ export function TopRatedHustles() {
             {/* If no reviews, still show the More pill button */}
             {(!hustle.recentReviews || hustle.recentReviews.length === 0) && (
               <div className="flex justify-end">
-                <div className="bg-primary text-primary-foreground px-3 py-1.5 rounded-full text-xs font-medium flex items-center">
+                <div className="bg-primary text-primary-foreground px-3 py-1.5 rounded-full text-xs font-medium flex items-center hover:bg-primary/90 transition-colors cursor-pointer">
                   <span>More</span>
                   <ArrowRight size={14} className="ml-1" />
                 </div>
