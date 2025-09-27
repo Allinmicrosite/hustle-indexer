@@ -16,13 +16,6 @@ export function HeroSection() {
         </p>
         
         <SearchBar />
-        
-        {/* Subtle keyword card */}
-        <div className="border border-border rounded-lg px-4 py-3 mb-4 max-w-2xl mx-auto" data-testid="keywords-card">
-          <p className="text-sm text-foreground">
-            Popular: Dropshipping · Affiliate Marketing · Online Tutoring · Content Creation
-          </p>
-        </div>
       </div>
     </section>
   );
