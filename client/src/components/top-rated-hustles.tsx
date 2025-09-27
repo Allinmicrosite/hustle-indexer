@@ -87,15 +87,15 @@ export function TopRatedHustles() {
 
             {/* Next Row: Subject, Type, $, Rating */}
             <div className="flex items-center text-sm mb-3 text-muted-foreground">
-              <div className="flex items-center space-x-4">
-                <span data-testid={`hustle-category-${hustle.id}`}>
+              <div className="flex items-center space-x-3">
+                <span className="border border-muted-foreground/30 text-muted-foreground px-2 py-0.5 rounded text-xs font-medium" data-testid={`hustle-category-${hustle.id}`}>
                   {hustle.category?.name || "Uncategorized"}
                 </span>
-                <span className="flex items-center">
-                  <Clock size={14} className="mr-1" />
+                <span className="border border-muted-foreground/30 text-muted-foreground px-2 py-0.5 rounded text-xs font-medium flex items-center">
+                  <Clock size={12} className="mr-1" />
                   {hustle.timeCommitment || "Flexible"}
                 </span>
-                <span className="flex items-center">
+                <span className="border border-muted-foreground/30 text-muted-foreground px-2 py-0.5 rounded text-xs font-medium flex items-center">
                   {formatHourlyRate(hustle.hourlyRateMin, hustle.hourlyRateMax)}
                 </span>
                 <span className="border border-green-500 text-green-600 px-2 py-0.5 rounded text-xs font-medium">
