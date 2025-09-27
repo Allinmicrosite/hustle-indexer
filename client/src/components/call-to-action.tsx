@@ -19,7 +19,7 @@ export function CallToAction() {
         <div className="flex justify-center">
           <Button
             onClick={handleSubmitReview}
-            className="bg-card text-foreground px-8 py-3 rounded-lg font-semibold hover:bg-card/90 transition-colors"
+            className="bg-white text-black px-8 py-3 rounded-lg font-semibold hover:bg-white/90 transition-colors shadow-lg"
             data-testid="button-suggest-review"
           >
             Suggest a Review
