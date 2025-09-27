@@ -263,7 +263,7 @@ export default function HustleDetail() {
                           {review.title}
                         </h4>
                         <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                          <span>by {displayReviewSource(review)}</span>
+                          <span>{displayReviewSource(review)}</span>
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
