@@ -108,17 +108,17 @@ export function TopRatedHustles() {
             {/* Next Row: Subject, Type, $, Rating */}
             <div className="flex items-center text-sm mb-3 text-muted-foreground">
               <div className="flex items-center space-x-3">
-                <span className="border border-muted-foreground/30 text-muted-foreground px-2 py-0.5 rounded text-xs font-medium" data-testid={`hustle-category-${hustle.id}`}>
+                <span className="border-2 border-muted-foreground/40 text-muted-foreground px-2 py-0.5 rounded text-xs font-medium" data-testid={`hustle-category-${hustle.id}`}>
                   {hustle.category?.name || "Uncategorized"}
                 </span>
-                <span className="border border-muted-foreground/30 text-muted-foreground px-2 py-0.5 rounded text-xs font-medium flex items-center">
+                <span className="border-2 border-muted-foreground/40 text-muted-foreground px-2 py-0.5 rounded text-xs font-medium flex items-center">
                   <Clock size={12} className="mr-1" />
                   {hustle.timeCommitment || "Flexible"}
                 </span>
-                <span className="border border-muted-foreground/30 text-muted-foreground px-2 py-0.5 rounded text-xs font-medium flex items-center">
+                <span className="border-2 border-muted-foreground/40 text-muted-foreground px-2 py-0.5 rounded text-xs font-medium flex items-center">
                   {formatHourlyRate(hustle.hourlyRateMin, hustle.hourlyRateMax)}
                 </span>
-                <span className="border border-muted-foreground/30 px-2 py-0.5 rounded text-xs font-medium flex items-center">
+                <span className="border-2 border-muted-foreground/40 px-2 py-0.5 rounded text-xs font-medium flex items-center justify-center min-w-[50px]">
                   {renderTrafficLight(parseFloat(hustle.averageScore || "0"))}
                 </span>
               </div>
