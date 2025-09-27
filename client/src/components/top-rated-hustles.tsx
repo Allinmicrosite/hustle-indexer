@@ -14,14 +14,14 @@ export function TopRatedHustles() {
     const greenFilled = rating >= 4.0;
     
     return (
-      <div className="flex items-center space-x-1.5 py-0.5">
-        <div className={`w-3.5 h-3.5 rounded-full border-2 ${
+      <div className="flex items-center space-x-1.5">
+        <div className={`w-3 h-3 rounded-full border-2 ${
           redFilled ? 'bg-red-500 border-red-500' : 'border-red-500/60 bg-transparent'
         }`}></div>
-        <div className={`w-3.5 h-3.5 rounded-full border-2 ${
+        <div className={`w-3 h-3 rounded-full border-2 ${
           yellowFilled ? 'bg-yellow-500 border-yellow-500' : 'border-yellow-500/60 bg-transparent'
         }`}></div>
-        <div className={`w-3.5 h-3.5 rounded-full border-2 ${
+        <div className={`w-3 h-3 rounded-full border-2 ${
           greenFilled ? 'bg-green-500 border-green-500' : 'border-green-500/60 bg-transparent'
         }`}></div>
       </div>
