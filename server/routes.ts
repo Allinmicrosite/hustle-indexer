@@ -26,8 +26,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(500).json({ message: "Failed to fetch categories" });
     }
   });
-}
-
 
   app.post("/api/categories", async (req, res) => {
     try {
