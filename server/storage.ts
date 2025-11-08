@@ -115,12 +115,13 @@ export class DatabaseStorage implements IStorage {
         isActive: hustles.isActive,
         createdAt: hustles.createdAt,
         updatedAt: hustles.updatedAt,
-        category: categories.id ? {
-          id: categories.id,
-          name: categories.name,
-          description: categories.description,
-          slug: categories.slug,
-        } : null,
+		category: categories.id ? {
+		  id: categories.id,
+		  name: categories.name,
+		  description: categories.description,
+		  slug: categories.slug,
+		} as Category : null,
+
       })
       .from(hustles)
       .leftJoin(categories, eq(hustles.categoryId, categories.id))
