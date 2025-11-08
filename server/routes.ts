@@ -3,9 +3,21 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertHustleSchema, insertReviewSchema, insertCategorySchema } from "@shared/schema";
 import { z } from "zod";
+import { db } from "./db";
+import { categories } from "@shared/schema"; // so we can test DB connection
 
 export async function registerRoutes(app: Express): Promise<Server> {
-  // Categories
+  // --- Database connection test ---
+  app.get("/api/status", async (req, res) => {
+    try {
+      const result = await db.select().from(categories).limit(1);
+      res.json({ ok: true, connected: true, sample: result });
+    } catch (err) {
+      res.status(500).json({ ok: false, error: (err as Error).message });
+    }
+  });
+
+  // --- Categories ---
   app.get("/api/categories", async (req, res) => {
     try {
       const categories = await storage.getCategories();
@@ -14,6 +26,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(500).json({ message: "Failed to fetch categories" });
     }
   });
+}
+
 
   app.post("/api/categories", async (req, res) => {
     try {
