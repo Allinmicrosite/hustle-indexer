@@ -1,6 +1,6 @@
 import { type Category, type Hustle, type Review, type InsertCategory, type InsertHustle, type InsertReview, type HustleWithCategory } from "@shared/schema";
 import { db } from "./db";
-import { categories, hustles, reviews } from "@shared/schema";
+import { categories, hustles, reviews, Category, Hustle, Review } from "@shared/schema";
 import { eq, desc, asc, sql, ilike, and } from "drizzle-orm";
 
 export interface IStorage {
@@ -111,17 +111,16 @@ export class DatabaseStorage implements IStorage {
         timeCommitment: hustles.timeCommitment,
         difficultyLevel: hustles.difficultyLevel,
         tags: hustles.tags,
-        requirements: hustles.requirements,
-        isActive: hustles.isActive,
-        createdAt: hustles.createdAt,
-        updatedAt: hustles.updatedAt,
-		category: categories.id ? {
+		requirements: hustles.requirements ?? [],
+		isActive: hustles.isActive ?? 1,
+		createdAt: hustles.createdAt ?? new Date(),
+		updatedAt: hustles.updatedAt ?? new Date(),
+		category: categories && categories.id ? {
 		  id: categories.id,
 		  name: categories.name,
 		  description: categories.description,
 		  slug: categories.slug,
 		} as Category : null,
-
       })
       .from(hustles)
       .leftJoin(categories, eq(hustles.categoryId, categories.id))
